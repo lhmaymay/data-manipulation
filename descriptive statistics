@@ -13,14 +13,12 @@ prod()	Product of Values
 cumsum()	Cumulative Sum
 cumprod()	Cumulative Product
 
-
 (1) value_counts
-df['x'].value_counts(ascending=False)
+df['x'].value_counts(ascending=False,dropna=False)
 cat 1000
 dog 800
 
 ###########################################
-
 class_counts = data.groupby('class').size()
 print(class_counts)
 
@@ -33,7 +31,6 @@ df['fare'].value_counts(bins=7)
 (365.949, 439.139]      0
 (292.76, 365.949]       0
 Name: fare, dtype: int64
-
 
 df['sex'].value_counts(normalize=True, ascending=False)
 male      0.647587
@@ -57,10 +54,20 @@ max      51.000000       4.800000
 
 (4) pct_change
 
-(5) df['merchant'].nunique()
+(5) check unique value counts
+df['merchant'].nunique()
 
 (6) Correlation
 pandas.set_option('display.width', 100)
 pandas.set_option('precision', 3)
 correlations = df.corr(method='pearson')
 print(correlations)
+
+(7) check missing value counts
+df.isnull().sum()
+y   0
+x1  0
+x2  3
+x3  0
+
+(8) 
