@@ -1,4 +1,29 @@
+import pandas as pd
+Function	Description
+count()	Number of non-null observations
+sum()	Sum of values
+mean()	Mean of Values
+median()	Median of Values
+mode()	Mode of values
+std()	Standard Deviation of the Values
+min()	Minimum Value
+max()	Maximum Value
+abs()	Absolute Value
+prod()	Product of Values
+cumsum()	Cumulative Sum
+cumprod()	Cumulative Product
+
+
 (1) value_counts
+df['x'].value_counts(ascending=False)
+cat 1000
+dog 800
+
+###########################################
+
+class_counts = data.groupby('class').size()
+print(class_counts)
+
 df['fare'].value_counts(bins=7)
 (-0.513, 73.19]       789
 (73.19, 146.38]        71
@@ -17,8 +42,19 @@ Name: sex, dtype: float64
 
 
 (2) df.describe()
+             Age         Rating
+count    12.000000      12.000000
+mean     31.833333       3.743333
+std       9.232682       0.661628
+min      23.000000       2.560000
+25%      25.000000       3.230000
+50%      29.500000       3.790000
+75%      35.500000       4.132500
+max      51.000000       4.800000
 
 (3) df.quantile(0.999)  
 # gives value of 99.9%
 
 (4) pct_change
+
+(5) df['merchant'].nunique()
