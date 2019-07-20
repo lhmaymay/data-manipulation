@@ -58,3 +58,9 @@ max      51.000000       4.800000
 (4) pct_change
 
 (5) df['merchant'].nunique()
+
+(6) Correlation
+pandas.set_option('display.width', 100)
+pandas.set_option('precision', 3)
+correlations = data.corr(method='pearson')
+print(correlations)
