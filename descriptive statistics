@@ -1,0 +1,24 @@
+(1) value_counts
+df['fare'].value_counts(bins=7)
+(-0.513, 73.19]       789
+(73.19, 146.38]        71
+(146.38, 219.57]       15
+(219.57, 292.76]       13
+(439.139, 512.329]      3
+(365.949, 439.139]      0
+(292.76, 365.949]       0
+Name: fare, dtype: int64
+
+
+df['sex'].value_counts(normalize=True, ascending=False)
+male      0.647587
+female    0.352413
+Name: sex, dtype: float64
+
+
+(2) df.describe()
+
+(3) df.quantile(0.999)  
+# gives value of 99.9%
+
+(4) pct_change
