@@ -57,11 +57,17 @@ max      51.000000       4.800000
 (5) check unique value counts
 df['merchant'].nunique()
 
-(6) Correlation
+(6) Correlation and covariance
 pandas.set_option('display.width', 100)
 pandas.set_option('precision', 3)
 correlations = df.corr(method='pearson')
 print(correlations)
+
+df['x'].corr(df['y'])
+df['x'].cov(df['y'])
+
+pairwise correlation
+df.corrwith(df.y)
 
 (7) check missing value counts
 df.isnull().sum()
@@ -71,3 +77,5 @@ x2  3
 x3  0
 
 (8) np.cumsum()
+
+(9) 
