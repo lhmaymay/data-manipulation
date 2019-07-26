@@ -1,3 +1,5 @@
 # label encoder
 # 1 hot encoder
 # WOE
+# pd.cut
+# pd.get_dummies
