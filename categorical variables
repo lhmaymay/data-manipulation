@@ -44,3 +44,8 @@ array(['Gen 1', 'Gen 2', 'Gen 3', 'Gen 4', 'Gen 5', 'Gen 6'],
 poke_df['GenerationLabel'] = poke_df['Generation'].map(gen_ord_map)
 
 # (3) One-hot Encoding
+
+# (4) pd.get_dummies
+gen_onehot_features = pd.get_dummies(poke_df['Generation'])
+pd.concat([poke_df[['Name', 'Generation']], gen_onehot_features], 
+           axis=1)
