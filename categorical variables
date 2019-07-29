@@ -71,5 +71,5 @@ pd.concat([poke_df[['Name', 'Generation']], gen_effect_features],
           
 # (8) Bin-counting
 # The bin-counting scheme is a useful scheme for dealing with categorical variables having many categories (for example IP address)
-
+# use probability based statistical information about the value and the actual target or response value which we aim to predict in our modeling efforts. 
 
