@@ -82,3 +82,23 @@ pd.concat([poke_df[['Name', 'Generation']], gen_effect_features],
 # The bin-counting scheme is a useful scheme for dealing with categorical variables having many categories (for example IP address)
 # use probability based statistical information about the value and the actual target or response value which we aim to predict in our modeling efforts. 
 
+
+# (9) Feature hashing
+unique_genres = np.unique(vg_df[['Genre']])
+print("Total game genres:", len(unique_genres))
+print(unique_genres)
+Output
+------
+Total game genres: 12
+['Action' 'Adventure' 'Fighting' 'Misc' 'Platform' 'Puzzle' 'Racing'
+ 'Role-Playing' 'Shooter' 'Simulation' 'Sports' 'Strategy']
+ 
+ from sklearn.feature_extraction import FeatureHasher
+fh = FeatureHasher(n_features=6, input_type='string')
+hashed_features = fh.fit_transform(vg_df['Genre'])
+hashed_features = hashed_features.toarray()
+pd.concat([vg_df[['Name', 'Genre']], pd.DataFrame(hashed_features)], 
+          axis=1)
+          
+# Based on the above output, the Genre categorical attribute has been encoded using the hashing scheme into 6 features instead of 12. 
+          
