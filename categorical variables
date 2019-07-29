@@ -49,3 +49,9 @@ poke_df['GenerationLabel'] = poke_df['Generation'].map(gen_ord_map)
 gen_onehot_features = pd.get_dummies(poke_df['Generation'])
 pd.concat([poke_df[['Name', 'Generation']], gen_onehot_features], 
            axis=1)
+
+# (5) using pd.get_dummies but drop one level of category
+gen_dummy_features = pd.get_dummies(poke_df['Generation'], 
+                                    drop_first=True)
+pd.concat([poke_df[['Name', 'Generation']], gen_dummy_features], 
+          axis=1)
