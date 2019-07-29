@@ -68,3 +68,6 @@ gen_effect_features.loc[np.all(gen_effect_features == 0,
                                axis=1)] = -1.
 pd.concat([poke_df[['Name', 'Generation']], gen_effect_features], 
           axis=1)
+          
+# (8) Bin-counting
+
