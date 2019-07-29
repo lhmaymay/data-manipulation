@@ -50,8 +50,13 @@ gen_onehot_features = pd.get_dummies(poke_df['Generation'])
 pd.concat([poke_df[['Name', 'Generation']], gen_onehot_features], 
            axis=1)
 
-# (5) using pd.get_dummies but drop one level of category
+# (5) using pd.get_dummies but drop the first category
 gen_dummy_features = pd.get_dummies(poke_df['Generation'], 
                                     drop_first=True)
 pd.concat([poke_df[['Name', 'Generation']], gen_dummy_features], 
           axis=1)
+          
+# (6) using pd.get_dummies but drop the last category
+gen_onehot_features = pd.get_dummies(poke_df['Generation'])
+gen_dummy_features = gen_onehot_features.iloc[:,:-1]
+pd.concat([poke_df[['Name', 'Generation']], gen_dummy_features]
