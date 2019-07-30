@@ -1,3 +1,29 @@
-# json file
+# json file: read row by row
+import pandas as pd
+import json
 path='C:/Users/uicma/OneDrive/Desktop/transactions.txt'
 df=pd.DataFrame([json.loads(line) for line in open(path)])
+
+
+# call API
+import requests
+from botocore.vendored import requests
+import hashlib
+from aws_requests_auth.aws_auth import AWSRequestsAuth
+
+df=pd.read_csv('....test.csv')
+lst=df['col'].values.tolist()
+auth=...
+L=[]
+for i, col in enumerate(lst):
+    req=requests.get("https://prod......".format(col,"3",auth=auth,stream=True)
+    file=req.raw
+    req_data=file.read()
+    try:
+       x=json.loads(req_data)
+       L.append(x['col1'],x['col2'],x['col3'])
+    except:
+      print('error')
+new_df=pd.DataFrame(L,columns=['col1','col2','col3'])
+new_df.head(5)
+new_df.to_csv('..../new_df.csv')
