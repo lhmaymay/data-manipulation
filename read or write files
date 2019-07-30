@@ -4,6 +4,14 @@ import json
 path='C:/Users/uicma/OneDrive/Desktop/transactions.txt'
 df=pd.DataFrame([json.loads(line) for line in open(path)])
 
+# read several csv files at once and consilidate into one dataset
+import glob
+path =r'C:\Users\uicma\Downloads\case_study_2017'
+filenames = glob.glob(path + "/*.csv")
+dfs = []
+for filename in filenames:
+    dfs.append(pd.read_csv(filename))
+df = pd.concat(dfs, ignore_index=True)
 
 # call API
 import requests
