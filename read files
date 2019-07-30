@@ -1,0 +1,3 @@
+# json file
+path='C:/Users/uicma/OneDrive/Desktop/transactions.txt'
+df=pd.DataFrame([json.loads(line) for line in open(path)])
