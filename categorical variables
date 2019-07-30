@@ -1,6 +1,6 @@
 # There are two major classes of categorical data: nominal (state,city) and ordinal (education level, shirt size).
 # label encoder
-# 1 hot encoder
+# one hot encoder
 # WOE
 # pd.cut
 # pd.get_dummies
