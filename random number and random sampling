@@ -30,6 +30,80 @@ X_train, X_test, y_train, y_test = train_test_split(diabetes.loc[:, diabetes.col
 #2) Now one by one consider all items from (k+1)th item to nth item.
 #…a) Generate a random number from 0 to i where i is index of current item in stream[]. Let the generated random number is j.
 #…b) If j is in range 0 to k-1, replace reservoir[j] with arr[i]
-
+# example 1:
+# An efficient Python3 program  
+# to randomly select k items 
+# from a stream of items 
+import random 
+# A utility function  
+# to print an array 
+def printArray(stream,n): 
+    for i in range(n): 
+        print(stream[i],end=" "); 
+    print(); 
+  
+# A function to randomly select 
+# k items from stream[0..n-1]. 
+def selectKItems(stream, n, k): 
+        i=0;  
+        # index for elements 
+        # in stream[] 
+          
+        # reservoir[] is the output  
+        # array. Initialize it with 
+        # first k elements from stream[] 
+        reservoir = [0]*k; 
+        for i in range(k): 
+            reservoir[i] = stream[i]; 
+          
+        # Iterate from the (k+1)th 
+        # element to nth element 
+        while(i < n): 
+            # Pick a random index 
+            # from 0 to i. 
+            j = random.randrange(i+1); 
+              
+            # If the randomly picked 
+            # index is smaller than k, 
+            # then replace the element 
+            # present at the index 
+            # with new element from stream 
+            if(j < k): 
+                reservoir[j] = stream[i]; 
+            i+=1; 
+          
+        print("Following are k randomly selected items"); 
+        printArray(reservoir, k); 
+      
+# Driver Code 
+  
+if __name__ == "__main__": 
+    stream = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]; 
+    n = len(stream); 
+    k = 5; 
+    selectKItems(stream, n, k); 
+    
+    
+#example 2:
+import random
+def generator(max):
+    number = 1
+    while number < max:
+        number += 1
+        yield number
+# Create as stream generator
+stream = generator(10000)
+# Doing Reservoir Sampling from the stream
+k=5
+reservoir = []
+for i, element in enumerate(stream):
+    if i+1<= k:
+        reservoir.append(element)
+    else:
+        probability = k/(i+1)
+        if random.random() < probability:
+            # Select item in stream and remove one of the k items already selected
+             reservoir[random.choice(range(0,k))] = element
+print(reservoir)
 
 #4:Thompson sampling
