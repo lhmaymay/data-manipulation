@@ -106,4 +106,8 @@ for i, element in enumerate(stream):
              reservoir[random.choice(range(0,k))] = element
 print(reservoir)
 
-#4:Thompson sampling
+#4:Random Undersampling and Oversampling
+
+#5: Undersampling and Oversampling using imbalanced-learn
+
+#6: Thompson sampling
