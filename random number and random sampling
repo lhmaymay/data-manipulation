@@ -109,5 +109,7 @@ print(reservoir)
 #4:Random Undersampling and Oversampling
 
 #5: Undersampling and Oversampling using imbalanced-learn
+#Oversampling using SMOTE,In SMOTE (Synthetic Minority Oversampling Technique) 
+#we synthesize elements for the minority class, in the vicinity of already existing elements.
 
 #6: Thompson sampling
