@@ -7,6 +7,24 @@ import numpy as np
 #Create function for simulating die roll 
 #The die can take values from 1 to 100. If the number is between 1 #and 51, the house wins. 
 #If the number is between 52 and 100, the player wins.
+
+
+#1. flip biased coin
+import random
+def flip_biased(p):
+    return random.random() < p
+
+c1 = 0
+c2 = 0
+for i in range(1000):
+    if flip_biased(0.7):
+        c1 += 1
+    if flip_biased(0.25):
+        c2 += 1
+print(c1,c2)
+#680 241
+
+#2. flip coin
 def rolldice():
     
     dice = random.randint(1,100)
