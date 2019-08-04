@@ -3,6 +3,22 @@ import pandas as pd
 import numpy as np
 # np.random.choice
 
+
+#Create function for simulating die roll 
+#The die can take values from 1 to 100. If the number is between 1 #and 51, the house wins. 
+#If the number is between 52 and 100, the player wins.
+def rolldice():
+    
+    dice = random.randint(1,100)
+    
+    if dice <=51:
+        return False
+    elif dice >51 & dice <=100:
+        return True
+        
+########################################### random sampling algorithm #############################################################
+
+
 #1:simple random sampling
 sample_df=df.sample(1000)
 sample_df=df.sample(frac=0.8)
