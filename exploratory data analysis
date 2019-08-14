@@ -1,0 +1,7 @@
+# 1: Univariate visualization — provides summary statistics for each field in the raw data set
+# 2: Bivariate visualization — is performed to find the relationship between each variable in the dataset and the target variable of interest
+# check correlations between features
+# check correlations with target variable
+
+# 3: Multivariate visualization — is performed to understand interactions between different fields in the dataset
+# 4: Dimensionality reduction — helps to understand the fields in the data that account for the most variance between observations and allow for the processing of a reduced volume of data.
