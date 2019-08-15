@@ -1,3 +1,13 @@
+#Spotting mistakes and missing data;
+#Mapping out the underlying structure of the data;
+#Identifying the most important variables;
+#Listing anomalies and outliers;
+#Testing a hypotheses / checking assumptions related to a specific model;
+#Establishing a parsimonious model (one that can be used to explain the data with minimal predictor variables);
+#Estimating parameters and figuring out the associated confidence intervals or margins of error.
+
+
+
 # 1: Univariate visualization — provides summary statistics for each field in the raw data set
 # 2: Bivariate visualization — is performed to find the relationship between each variable in the dataset and the target variable of interest
 # check correlations between features
@@ -5,3 +15,6 @@
 
 # 3: Multivariate visualization — is performed to understand interactions between different fields in the dataset
 # 4: Dimensionality reduction — helps to understand the fields in the data that account for the most variance between observations and allow for the processing of a reduced volume of data.
+
+
+
