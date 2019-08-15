@@ -148,3 +148,18 @@ print(reservoir)
 #we synthesize elements for the minority class, in the vicinity of already existing elements.
 
 #6: Thompson sampling
+
+#7: SMOTE  (Synthetic Minority Over-sampling Technique)
+
+from imblearn.over_sampling import SMOTE
+import numpy as np
+sm = SMOTE(random_state=12)
+x_train_res, y_train_res = sm.fit_sample(X_train, Y_train)
+print (Y_train.value_counts() , np.bincount(y_train_res))
+Output: 
+#previous distribution of majority and minority classes
+0    6895
+1     105
+#After SMOTE, distirbution of majority and minority classes
+0    6895
+1    6895
