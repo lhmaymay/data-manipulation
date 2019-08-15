@@ -15,6 +15,11 @@
 
 # 3: Multivariate visualization — is performed to understand interactions between different fields in the dataset
 # 4: Dimensionality reduction — helps to understand the fields in the data that account for the most variance between observations and allow for the processing of a reduced volume of data.
+# help you to create graphical displays of high-dimensional data containing many variables;
 
+
+#5: Multivariate visualizations, for mapping and understanding interactions between different fields in the data;
+#6: K-Means Clustering (creating “centres” for each cluster, based on the nearest mean);
+#7: Predictive models, e.g. linear regression.
 
 
