@@ -1,1 +1,15 @@
 
+#1: date time related
+df['year']=df['datetime'].dt.year
+df['month']=df['datetime'].dt.month
+df['day']=df['datetime'].dt.day
+df['dayofweek']=df['datetime'].dt.dayofweek
+df['hour']=df['datetime'].dt.hour
+
+#2: log transformation to faltten highly skewed feature, for example product sales, customer income
+df['log_sales']=np.log1p(df['sales'])
+
+#3: interaction terms
+
+#4: square root
+
