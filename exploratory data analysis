@@ -6,9 +6,19 @@
 #Establishing a parsimonious model (one that can be used to explain the data with minimal predictor variables);
 #Estimating parameters and figuring out the associated confidence intervals or margins of error.
 
-
+# 0: data quality, sanity check
+df.isnull().values.any()
 
 # 1: Univariate visualization — provides summary statistics for each field in the raw data set
+
+count_classes = df['Class'].value_counts(sort = True, normalize=True)
+count_classes.plot(kind = 'bar', rot=0)
+plt.title("Transaction class distribution")
+plt.xticks(range(2), LABELS)
+plt.xlabel("Class")
+plt.ylabel("Frequency");
+
+
 # 2: Bivariate visualization — is performed to find the relationship between each variable in the dataset and the target variable of interest
 # check correlations between features
 # check correlations with target variable
