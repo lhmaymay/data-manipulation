@@ -35,3 +35,15 @@ for i, col in enumerate(lst):
 new_df=pd.DataFrame(L,columns=['col1','col2','col3'])
 new_df.head(5)
 new_df.to_csv('..../new_df.csv')
+
+
+
+# crawl webpages
+# use the urllib module to crawl the web page:
+import urllib.request
+ 
+response = urllib.request.urlopen('http://php.net/')
+ 
+html = response.read()
+ 
+print (html)
