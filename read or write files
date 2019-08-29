@@ -37,13 +37,8 @@ new_df.head(5)
 new_df.to_csv('..../new_df.csv')
 
 
-
-# crawl webpages
-# use the urllib module to crawl the web page:
+# crawl the webpage
 import urllib.request
- 
-response = urllib.request.urlopen('http://php.net/')
- 
+response =  urllib.request.urlopen('https://en.wikipedia.org/wiki/SpaceX')
 html = response.read()
- 
-print (html)
+print(html)
