@@ -163,3 +163,6 @@ Output:
 #After SMOTE, distirbution of majority and minority classes
 0    6895
 1    6895
+
+#8: SMOTEENN SMOTE with edited nearest neighbours (ENN) from imblearn
+
