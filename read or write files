@@ -66,4 +66,4 @@ file_name = 'data.txt'
 with open(file_name, mode = 'r') as file:
     df = file
     
-
+# https://towardsdatascience.com/data-scientists-toolkit-how-to-gather-data-from-different-sources-1b92067556b3
