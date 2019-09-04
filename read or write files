@@ -51,3 +51,19 @@ OR
 df = pd.read_csv('data.txt', sep = ' ')
 
 
+# with open
+# https://stackabuse.com/file-handling-in-python/
+Mode	Description
+'r'	Open a file for reading. (default)
+'w'	Open a file for writing. Creates a new file if it does not exist or truncates the file if it exists.
+'x'	Open a file for exclusive creation. If the file already exists, the operation fails.
+'a'	Open for appending at the end of the file without truncating it. Creates a new file if it does not exist.
+'t'	Open in text mode. (default)
+'b'	Open in binary mode.
+'+'	Open a file for updating (reading and writing)        
+         
+file_name = 'data.txt'
+with open(file_name, mode = 'r') as file:
+    df = file
+    
+
