@@ -42,3 +42,12 @@ import urllib.request
 response =  urllib.request.urlopen('https://en.wikipedia.org/wiki/SpaceX')
 html = response.read()
 print(html)
+
+
+# Tab separated file
+df = pd.read_csv('data.tsv', sep='\t')
+OR 
+# columns are separated by space 
+df = pd.read_csv('data.txt', sep = ' ')
+
+
