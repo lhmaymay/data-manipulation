@@ -51,7 +51,9 @@ max      51.000000       4.800000
 
 (3) df.quantile(0.999)  
 # gives value of 99.9%
-
+df_trans['TransactionAmt'] = df_trans['TransactionAmt'].astype(float)
+print("Transaction Amounts Quantiles:")
+print(df_trans['TransactionAmt'].quantile([.01, .025, .1, .25, .5, .75, .9, .975, .99]))
 (4) pct_change
 
 (5) check unique value counts
