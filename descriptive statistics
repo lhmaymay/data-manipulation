@@ -54,6 +54,11 @@ max      51.000000       4.800000
 df_trans['TransactionAmt'] = df_trans['TransactionAmt'].astype(float)
 print("Transaction Amounts Quantiles:")
 print(df_trans['TransactionAmt'].quantile([.01, .025, .1, .25, .5, .75, .9, .975, .99]))
+
+print("Card Features Quantiles: ")
+print(df_trans[['card1', 'card2', 'card3', 'card5']].quantile([0.01, .025, .1, .25, .5, .75, .975, .99]))
+
+
 (4) pct_change
 
 (5) check unique value counts
