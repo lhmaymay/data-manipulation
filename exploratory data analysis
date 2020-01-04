@@ -71,6 +71,22 @@ for col in x_train.columns:
     x_train[col]=pd.to_numeric(x_train[col])
 x_train.dtypes
 
+# transform numeric to intervals
+def ff(row):
+    if row['risk_score']>=0 and row['risk_score']<=100:
+        val = '0-100'
+    elif row['risk_score']>100 and row['risk_score']<=200:
+        val = '101-200'
+    elif row['risk_score']>200 and row['risk_score']<=300:
+        val = '201-300'
+    elif row['risk_score']>300 and row['risk_score']<=400:
+        val = '301-400'
+    elif row['risk_score']>400:
+        val = '401-500'
+    else:
+        val='Missing'
+    return val 
+df['risk_score_band'] = df.apply(ff, axis=1)
 
 # 1: Univariate visualization — provides summary statistics for each field in the raw data set
 
@@ -119,7 +135,11 @@ plt.show()
 
 Typical graphical techniques used in EDA are:
 
-Box plot
+# (1) Box plot:
+import seaborn as sns
+sns.boxplot(x='product_type',y='tte',hue='fraudflag',data=df)
+
+
 Histogram
 Multi-vari chart
 Run chart
