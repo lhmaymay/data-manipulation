@@ -6,8 +6,69 @@
 #Establishing a parsimonious model (one that can be used to explain the data with minimal predictor variables);
 #Estimating parameters and figuring out the associated confidence intervals or margins of error.
 
+#read in data
+import pandas as pd
+pd.set_option('display.max_column',None)
+pd.set_option('display.max_rows',None)
+pd.set_option('display.max_seq_items',None)
+pd.set_option('display.max_colwidth', 1000)
+pd.set_option('expand_frame_repr', True)
+df=pd.read_csv('valid_features.csv.gz',compression='gzip',index_col=0)
+df.to_csv('valid_features.csv.gz',compression='gzip',index=False)
+
+# read in data from S3 bucket
+import boto3
+from sagemaker import get_execution_role
+import numpy as np
+import glob
+import pandas as pd
+import numpy as np
+import csv
+import glob
+import h5py
+import dask.dataframe as dd
+from common.constant import CONTROL_A_DELIM
+from common.constant import FRAUD_FLAG
+from common.constant import NA_DELIM
+role = get_execution_role()
+bucket='ds/data/transformed/training'
+data_key = 'transformed.training.*.gz'
+data_files_location = 's3://{}/{}'.format(bucket, data_key)
+x_data = dd.read_csv(data_files_location, delimiter=CONTROL_A_DELIM, compression='gzip',quoting=csv.QUOTE_NONE, header=0,
+                         na_values=NA_DELIM, keep_default_na=False, dtype=str, blocksize=None)
+x_data = x_data.compute()
+train=pd.merge(x_train,x_data,on='ind',how='inner')
+
+
+data_key = 'valid_extra.csv.gz'
+data_files_location = 's3://{}/{}'.format(bucket, data_key)
+df_valid= pd.read_csv(data_files_location, compression='gzip')
+df_valid.head()
+
+# read in snappy files
+import snappy
+with open (snappy_file, "r") as input_file:
+  data = input_file.read()
+  decompressor = snappy.hadoop_snappy.StreamDecompressor()
+  uncompressed = decompressor.decompress(data)
+ 
+
 # 0: data quality, sanity check
 df.isnull().values.any()
+df.isnull().sum().max()
+
+# check missing value % missing, data completeness
+percent_missing =x_train.isnull().sum() * 100 / len(x_train)
+missing_value_df = pd.DataFrame({'column_name': x_train.columns,
+                                 'percent_missing': percent_missing})
+missing_value_df.sort_values('percent_missing', inplace=True,ascending=False)
+missing_value_df
+
+# transform string to numeric
+for col in x_train.columns:
+    x_train[col]=pd.to_numeric(x_train[col])
+x_train.dtypes
+
 
 # 1: Univariate visualization — provides summary statistics for each field in the raw data set
 
@@ -22,6 +83,27 @@ plt.ylabel("Frequency");
 # 2: Bivariate visualization — is performed to find the relationship between each variable in the dataset and the target variable of interest
 # check correlations between features
 # check correlations with target variable
+grouped = x_valid[['risk_score', 'fraudflag']].groupby('risk_score').mean().reset_index()
+hist_kws={'histtype': 'bar', 'edgecolor':'black', 'alpha': 0.2}
+
+fig, ax = plt.subplots(nrows=1, ncols=2, figsize=(18, 6))
+sns.distplot(x_valid[x_valid['fraudflag'] == 0]['risk_score'], label='Non-Fraud', 
+             ax=ax[0], hist_kws=hist_kws)
+sns.distplot(x_valid[x_valid['fraudflag'] == 1]['risk_score'], label='Fraud', 
+             ax=ax[0], hist_kws=hist_kws)
+ax[0].set_title('Count Plot of Risk Score', fontsize=16)
+ax[0].legend()
+ax[1].plot(grouped['risk_score'], grouped['fraudflag'], '.-')
+ax[1].set_title('Mean Fraud Rate vs. Risk Score', fontsize=16)
+ax[1].set_xlabel(' Risk Score')
+ax[1].set_ylabel('Mean fraud rate')
+ax[1].grid(True)
+plt.show()
+
+# heat map triangle shape of correlation matrix
+
+     
+     
 
 # 3: Multivariate visualization — is performed to understand interactions between different fields in the dataset
 # 4: Dimensionality reduction — helps to understand the fields in the data that account for the most variance between observations and allow for the processing of a reduced volume of data.
