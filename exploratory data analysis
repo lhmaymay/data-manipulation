@@ -118,8 +118,23 @@ ax[1].set_ylabel('Mean fraud rate')
 ax[1].grid(True)
 plt.show()
 
-# heat map triangle shape of correlation matrix
 
+# pivot table
+pd.pivot_table(df,index=['risk_score_band'],columns=['product_type'],values=['fraudflag'],aggfunc={np.mean,len})
+
+# heat map triangle shape of correlation matrix
+import seaborn as sns
+sns.set(style="white")
+mask = np.zeros_like(corr, dtype=np.bool)
+mask[np.triu_indices_from(mask)] = True
+# Set up the matplotlib figure
+f, ax = plt.subplots(figsize=(11, 9))
+# Generate a custom diverging colormap
+cmap = sns.diverging_palette(220, 10, as_cmap=True)
+# Draw the heatmap with the mask and correct aspect ratio
+sns.heatmap(corr, mask=mask, cmap=cmap, center=0,
+            square=True, linewidths=.5, cbar_kws={"shrink": .5})
+plt.show()
      
      
 
