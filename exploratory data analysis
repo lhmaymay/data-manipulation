@@ -64,6 +64,8 @@ missing_value_df = pd.DataFrame({'column_name': x_train.columns,
 missing_value_df.sort_values('percent_missing', inplace=True,ascending=False)
 missing_value_df
 
+x_train=x_train.drop(droplist_missing,axis=1)
+
 # transform string to numeric
 for col in x_train.columns:
     x_train[col]=pd.to_numeric(x_train[col])
