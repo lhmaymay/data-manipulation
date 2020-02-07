@@ -13,3 +13,7 @@ df['log_sales']=np.log1p(df['sales'])
 
 #4: square root
 
+#5: Python Pandas add column for row-wise max value of selected columns
+frame['HighScore'] = frame[['test1','test2','test3']].max(axis=1)
+
+
