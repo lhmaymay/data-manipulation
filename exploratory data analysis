@@ -155,6 +155,9 @@ import seaborn as sns
 sns.boxplot(x='product_type',y='tte',hue='fraudflag',data=df)
 
 
+# Python Pandas add column for row-wise max value of selected columns
+frame['HighScore'] = frame[['test1','test2','test3']].max(axis=1)
+
 Histogram
 Multi-vari chart
 Run chart
