@@ -67,5 +67,5 @@ def get_val(dict_cat, attr_value, attr_name):
 
 for attr_name in df.columns:
     if attr_name in dict_cat:
-        df[attr_name] = [get_xfm_val(dict_cat, attr_value, attr_name) for attr_value in df[attr_name]]
+        df[attr_name] = [get_val(dict_cat, attr_value, attr_name) for attr_value in df[attr_name]]
         print(attr_name)
