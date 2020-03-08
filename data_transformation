@@ -1,0 +1,71 @@
+import pandas as pd
+pd.set_option('display.max_column',None)
+pd.set_option('display.max_rows',None)
+pd.set_option('display.max_seq_items',None)
+pd.set_option('display.max_colwidth', 1000)
+pd.set_option('expand_frame_repr', True)
+import subprocess
+!conda install -y -c conda-forge xgboost
+import pandas as pd
+import dask.dataframe as dd
+import numpy as np
+import matplotlib.pyplot as plt
+%matplotlib inline
+
+from xgboost import plot_importance
+from sklearn.model_selection import cross_val_score,KFold,train_test_split
+from sklearn.metrics import accuracy_score, roc_auc_score,f1_score, precision_score, recall_score, classification_report, confusion_matrix
+import xgboost as xgb
+from xgboost.sklearn import XGBClassifier
+from sklearn import metrics   #Additional scklearn functions
+from sklearn.model_selection import cross_validate,GridSearchCV
+from matplotlib.pylab import rcParams
+import boto3
+from sagemaker import get_execution_role
+import numpy as np
+import glob
+import pandas as pd
+import numpy as np
+import csv
+import glob
+import h5py
+import dask.dataframe as dd
+role = get_execution_role()
+import dask.dataframe as dd
+
+percent_missing =df.isnull().sum() * 100 / len(df)
+missing_value_df = pd.DataFrame({'column_name': df.columns,
+                                 'percent_missing': percent_missing})
+missing_value_df[pd.to_numeric(missing_value_df['percent_missing'])>=100]
+
+def drop_cols_with_identical_values(x_train):
+    nunique = x_train.apply(pd.Series.nunique)
+    cols_to_drop = nunique[nunique <= 1].index
+#    LOGGER.info('Dropping following columns due to all values are identical: {}'.format(cols_to_drop))
+    x_train.drop(cols_to_drop, axis=1, inplace=True)
+    return x_train
+
+def remove_dup_columns(frame):
+    keep_names = set()
+    keep_icols = list()
+    for icol, name in enumerate(frame.columns):
+        if name not in keep_names:
+            keep_names.add(name)
+            keep_icols.append(icol)
+    return frame.iloc[:, keep_icols]
+
+def get_val(dict_cat, attr_value, attr_name):
+    # Convert NaNs to empty string so they use the empty string lookup entry.
+    # np.isnan throws an exception if input is not a float. If input is not a float, we can be sure it is not NaN.
+    if isinstance(attr_value, float) and np.isnan(attr_value):
+        attr_value = ''
+
+    if attr_value in dict_cat.get(attr_name):
+        return dict_cat[attr_name][attr_value]
+    else:
+        return dict_cat[attr_name]['__other']
+
+for attr_name in df.columns:
+    if attr_name in dict_cat:
+        df[attr_name] = [get_xfm_val(dict_cat, attr_value, attr_name) for attr_value in df[attr_name]]
+        print(attr_name)
