@@ -69,3 +69,11 @@ for attr_name in df.columns:
     if attr_name in dict_cat:
         df[attr_name] = [get_val(dict_cat, attr_value, attr_name) for attr_value in df[attr_name]]
         print(attr_name)
+def build_dict_numerical(train, numeric_attrs):
+    dict_num = {}
+
+    for attr in numeric_attrs:
+        if attr in train.columns:
+            dict_num[attr] = np.nanmin(train[attr])
+    return dict_num
+
