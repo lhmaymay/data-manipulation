@@ -7,6 +7,28 @@ Users chose not to fill out a field tied to their beliefs about how the results 
 As you can see, some of these sources are just simple random mistakes. Other times, there can be a deeper reason why data is missing. Python Pandas will recognize both empty cells and “NA” types as missing values. But sometimes, If there’s multiple users manually entering data, then this is a common problem. Maybe i like to use “n/a” but you like to use “na”. For example, ruleengine_daysincedevicefirstseen has special values "None". It’s important to recognize these non-standard types of missing values for purposes of summarizing and transforming missing values. If you try and count the number of missing values before converting these non-standard types, you could end up missing a lot of missing values.
 An easy way to detect these various formats is to put them in a list. Then when we import the data, Pandas will recognize them right away. Here’s an example of how we would do that.
 
+Option 1: Missing imputation (univariate: replace missing values with zero, mean, median, mode/most frequent values of 
+the numeric attributes). Imputes values in the i-th feature dimension using only non-missing values in that feature 
+dimension (e.g. impute.SimpleImputer).  The SimpleImputer class provides basic strategies for imputing missing values. 
+Missing values can be imputed with a provided constant value, or using the statistics (mean, median or most frequent) 
+of each column in which the missing values are located. This class also allows for different missing values encodings.   
+from sklearn.impute import SimpleImputer
+                                                             
+Option 2: Missing imputation (multivariate: impute missing by modeling each feature with missing values as a function 
+of other features.), out of scope due to complexity.                    
+Multivariate imputation algorithms use the entire set of available feature dimensions to estimate the missing values 
+(e.g. impute.IterativeImputer).This estimator is still experimental.
+from sklearn.experimental import enable_iterative_imputer
+from sklearn.impute import IterativeImputer
+
+Option 3: Nearest neighbor imputation.  The KNNImputer class provides imputation for filling in missing values using the 
+k-Nearest Neighbors approach. By default, a euclidean distance metric that supports missing values, nan_euclidean_distances, 
+is used to find the nearest neighbors. Each missing feature is imputed using values from n_neighbors nearest neighbors that
+have a value for the feature. 
+from sklearn.impute import KNNImputer. 
+https://towardsdatascience.com/xgboost-is-not-black-magic-56ca013144b4
+
+
 # Making a list of missing value types
 missing_values = ["n/a", "na", "–", "None"] 
 df = pd.read_csv("property data.csv", na_values = missing_values)
