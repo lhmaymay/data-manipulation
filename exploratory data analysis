@@ -165,6 +165,12 @@ plt.title(“Number of cars by make”)
 plt.ylabel(‘Number of cars’)
 plt.xlabel(‘Make’);
 
+(3) Heat map
+# Finding the relations between the variables.
+plt.figure(figsize=(20,10))
+c= df.corr()
+sns.heatmap(c,cmap=”BrBG”,annot=True)
+c
 
 
 Multi-vari chart
