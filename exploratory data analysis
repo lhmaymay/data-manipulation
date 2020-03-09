@@ -172,6 +172,18 @@ c= df.corr()
 sns.heatmap(c,cmap=”BrBG”,annot=True)
 c
 
+(4) Scatter plot
+# Plotting a scatter plot
+fig, ax = plt.subplots(figsize=(10,6))
+ax.scatter(df[‘HP’], df[‘Price’])
+ax.set_xlabel(‘HP’)
+ax.set_ylabel(‘Price’)
+plt.show()
+
+
+
+
+
 
 Multi-vari chart
 Run chart
