@@ -1,0 +1,25 @@
+https://towardsdatascience.com/data-cleaning-with-python-and-pandas-detecting-missing-values-3e9c6ebcf78b
+It’s important to understand the sources of missing data. Here’s some typical reasons why data is missing:
+User forgot to fill in a field.
+Data was lost while transferring manually from a legacy database.
+There was a programming error.
+Users chose not to fill out a field tied to their beliefs about how the results would be used or interpreted.
+As you can see, some of these sources are just simple random mistakes. Other times, there can be a deeper reason why data is missing. Python Pandas will recognize both empty cells and “NA” types as missing values. But sometimes, If there’s multiple users manually entering data, then this is a common problem. Maybe i like to use “n/a” but you like to use “na”. For example, ruleengine_daysincedevicefirstseen has special values "None". It’s important to recognize these non-standard types of missing values for purposes of summarizing and transforming missing values. If you try and count the number of missing values before converting these non-standard types, you could end up missing a lot of missing values.
+An easy way to detect these various formats is to put them in a list. Then when we import the data, Pandas will recognize them right away. Here’s an example of how we would do that.
+
+# Making a list of missing value types
+missing_values = ["n/a", "na", "–", "None"] 
+df = pd.read_csv("property data.csv", na_values = missing_values)
+
+# Detecting numbers 
+cnt=0
+for row in df['OWN_OCCUPIED']:
+    try:
+        int(row)
+        df.loc[cnt, 'OWN_OCCUPIED']=np.nan
+    except ValueError:
+        pass
+    cnt+=1
+    
+    
+    
