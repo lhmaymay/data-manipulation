@@ -43,5 +43,9 @@ for row in df['OWN_OCCUPIED']:
         pass
     cnt+=1
     
-    
+# Replace missing values with a number
+df['ST_NUM'].fillna(125, inplace=True)
+
+# Location based replacement
+df.loc[2,'ST_NUM'] = 125
     
