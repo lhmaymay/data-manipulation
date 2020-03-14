@@ -1,0 +1,62 @@
+https://gist.github.com/jiahao87/c97214065f996b76ab8fe4ca1964b2b5
+General Outline of EDA
+Our code template shall perform the following steps:
+Preview data
+Check total number of entries and column types
+Check any null values
+Check duplicate entries
+Plot distribution of numeric data (univariate and pairwise joint distribution)
+Plot count distribution of categorical data
+Analyse time series of numeric data by daily, monthly and yearly frequencies
+The necessary dependencies are as such:
+import pandas as pd
+import numpy as np
+import matplotlib
+import matplotlib.pyplot as plt
+import seaborn as sns
+import missingno
+%matplotlib inline
+df = pd.read_csv('train.csv')
+df.info()
+df.head()
+# set identifier "Store" as string
+df['Store'] = df['Store'].astype('str')
+# set categorical data
+df['DayOfWeek'] = df['DayOfWeek'].astype('category')
+df['Open'] = df['Open'].astype('category')
+df['Promo'] = df['Promo'].astype('category')
+df['StateHoliday'] = df['StateHoliday'].astype(str).str.strip().astype('category')
+df['SchoolHoliday'] = df['SchoolHoliday'].astype('category')
+# set datetime data
+df['Date'] = pd.to_datetime(df['Date'])
+
+https://gist.github.com/jiahao87/c97214065f996b76ab8fe4ca1964b2b5
+
+eda(df)
+Missing values and Duplicated Entries
+# generate preview of entries with null values
+if len(df[df.isnull().any(axis=1)] != 0):
+    print("\nPreview of data with null values:\nxxxxxxxxxxxxx")
+    print(df[df.isnull().any(axis=1)].head(3))
+    missingno.matrix(df)
+    plt.show()
+
+# generate count statistics of duplicate entries
+if len(df[df.duplicated()]) > 0:
+    print("No. of duplicated entries: ", len(df[df.duplicated()]))
+    print(df[df.duplicated(keep=False)].sort_values(by=list(df.columns)).head())
+else:
+    print("No duplicated entries found")
+df.drop_duplicates(inplace=True)
+
+def categorical_eda(df):
+    """Given dataframe, generate EDA of categorical data"""
+    print("To check: Unique count of non-numeric data")
+    print(df.select_dtypes(include=['category']).nunique())
+    top5(df)
+    # Plot count distribution of categorical data
+    for col in df.select_dtypes(include='category').columns:
+        fig = sns.catplot(x=col, kind="count", data=df)
+        fig.set_xticklabels(rotation=90)
+        plt.show()
+numeric_eda(df, hue='DayOfWeek')
