@@ -4,7 +4,15 @@ import json
 path='C:/Users/uicma/OneDrive/Desktop/transactions.txt'
 df=pd.DataFrame([json.loads(line) for line in open(path)])
 
-
+#read write dictionary
+cat = open("dict_cat.txt","w")
+cat.write(str(dict_cat))
+cat.close()
+import json
+f = open('dict_cat.txt', 'r').read()
+import ast
+dict_cat=ast.literal_eval(f)
+dict_cat
 
 with open('train.json', 'r') as raw_data:
     data = json.load(raw_data)
