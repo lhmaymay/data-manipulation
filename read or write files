@@ -82,3 +82,17 @@ with open(file_name, mode = 'r') as file:
     df = file
     
 # https://towardsdatascience.com/data-scientists-toolkit-how-to-gather-data-from-different-sources-1b92067556b3
+
+
+###### moving files from S3 bucket to Sagemaker notebook home directory or vice versa ################
+1: how to upload files from sagemake notebook home to s3 bucket?												
+from sagemaker notebook												
+File > New > Terminalmenu.												
+aws s3 cp /home/ec2-user/SageMaker/email_entropy.csv s3://ds/hongliu/emailname/entropy/												
+find pwd from jupyter notebook instance, command "pwd"												
+												
+2: how to download from s3 bucket to sagemaker notebook home												
+import boto3												
+from sagemaker import get_execution_role												
+en=dd.read_csv('s3://ds/hongliu/entropy/*',delimiter=CONTROL_A_DELIM, quoting=csv.QUOTE_NONE, header=0,												
+                         na_values=NA_DELIM, keep_default_na=False, dtype=str, blocksize=None)												
