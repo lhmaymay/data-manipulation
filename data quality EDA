@@ -4,7 +4,9 @@ pd.set_option('display.width', 1000)
 
 https://towardsdatascience.com/exploratory-data-analysis-eda-a-practical-guide-and-template-for-structured-data-abfbf3ee3bd9
 https://gist.github.com/jiahao87/c97214065f996b76ab8fe4ca1964b2b5
+
 General Outline of EDA
+
 Our code template shall perform the following steps:
 Preview data
 Check total number of entries and column types
@@ -14,6 +16,9 @@ Plot distribution of numeric data (univariate and pairwise joint distribution)
 Plot count distribution of categorical data
 Analyse time series of numeric data by daily, monthly and yearly frequencies
 The necessary dependencies are as such:
+
+
+
 import pandas as pd
 import numpy as np
 import matplotlib
@@ -44,6 +49,9 @@ if len(df[df.isnull().any(axis=1)] != 0):
     print("\nPreview of data with null values:\nxxxxxxxxxxxxx")
     print(df[df.isnull().any(axis=1)].head(3))
     missingno.matrix(df)
+    
+df=df.replace(['\\N','None'],np.nan,inplace=True)
+
     plt.show()
 
 # generate count statistics of duplicate entries
