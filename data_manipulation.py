@@ -36,5 +36,9 @@ churn[['Geography','Age']].groupby('Geography').mean().sort_values(by='Age', asc
 combined = pd.concat([people,preferences,job],axis=1) # using concat function because we have more than 2 dataframes
 combined.drop('id',axis=1,inplace=True) # dropping the id column as it is not significant in analysis and it is repeated
 
+bins = [0,20,60,100] # create bins for age group
+labels = ['Young','Working','Senior Citizen'] #create labels for age groups 
+combined['AGE GROUP'] = pd.cut(combined['AGE'],bins=bins, labels=labels) # create a new column for age groups
+
 
 
