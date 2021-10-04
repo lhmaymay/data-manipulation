@@ -3,6 +3,17 @@ import pandas as pd
 # Reading the password from a text file
 with open('credentials.txt','r') as f:
     password = f.read().strip()
+
+# Establishing a connection to mysql database 
+conn = mysql.connector.connect(host='127.0.0.1',port=3306, username='root',password=password,auth_plugin='mysql_native_password',
+                               database='mydb')
+# Reading the data 
+people = pd.read_sql('SELECT * FROM people',conn)
+preferences = pd.read_sql('SELECT * FROM preferences',conn)
+job = pd.read_sql('SELECT * FROM job',conn)
+
+# Closing the connection 
+conn.close()
     
 churn = pd.read_csv("/content/churn.csv")
 
