@@ -1,5 +1,9 @@
 
 import pandas as pd
+# Reading the password from a text file
+with open('credentials.txt','r') as f:
+    password = f.read().strip()
+    
 churn = pd.read_csv("/content/churn.csv")
 
 # compare to sql
