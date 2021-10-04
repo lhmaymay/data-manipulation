@@ -44,3 +44,5 @@ combined['AGE GROUP'] = pd.cut(combined['AGE'],bins=bins, labels=labels) # creat
 age_grp_gender = pd.DataFrame(combined.groupby(by=['GENDER','AGE GROUP'])['AGE GROUP'].count())
 age_grp_men = age_grp_gender.xs('M').rename(columns={'AGE GROUP':'NUM_MEN'})
 age_grp_women = age_grp_gender.xs('F').rename(columns={'AGE GROUP':'NUM_WOMEN'})
+
+tips.assign(tip_rate=tips["tip"] / tips["total_bill"])
