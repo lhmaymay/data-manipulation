@@ -33,4 +33,8 @@ churn.Geography.nunique()
 churn.Geography.value_counts()
 churn[['Geography','Age']].groupby('Geography').mean().sort_values(by='Age', ascending=False)
 
+combined = pd.concat([people,preferences,job],axis=1) # using concat function because we have more than 2 dataframes
+combined.drop('id',axis=1,inplace=True) # dropping the id column as it is not significant in analysis and it is repeated
+
+
 
