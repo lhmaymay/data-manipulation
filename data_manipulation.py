@@ -1,5 +1,7 @@
 
 import pandas as pd
+df = pd.read_csv(‘file.csv’, header=0, index_col=0, quotechar=’”’,sep=’:’, na_values = [‘na’, ‘-‘, ‘.’, ‘’])
+
 # Reading the password from a text file
 with open('credentials.txt','r') as f:
     password = f.read().strip()
