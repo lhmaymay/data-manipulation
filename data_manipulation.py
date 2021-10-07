@@ -48,3 +48,8 @@ age_grp_men = age_grp_gender.xs('M').rename(columns={'AGE GROUP':'NUM_MEN'})
 age_grp_women = age_grp_gender.xs('F').rename(columns={'AGE GROUP':'NUM_WOMEN'})
 
 tips.assign(tip_rate=tips["tip"] / tips["total_bill"])
+
+# loc: select by labels(names) of rows and columns
+# iloc: select by positions of rows and columns
+
+    
